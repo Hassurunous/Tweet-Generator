@@ -24,4 +24,13 @@
             i. Sort user input alphabetically.
             ii. Sort next line of dictionary alphabetically.
             iii. Compare.
-            iv. Repeat. 
+            iv. Repeat.
+
+3. Autocomplete Program
+    a. Accept input from user.
+        I. Ask for input from user.
+        II. Store user input.
+        III. Open file.
+        IV. Split file into lines for easy reading.
+        V. Search through dictionary for words that begin with user input.
+            i. if first input.length characters of word == input, add to autocomplete array.

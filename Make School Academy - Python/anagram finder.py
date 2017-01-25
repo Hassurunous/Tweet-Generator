@@ -17,10 +17,10 @@ sorted_letters = ''.join(sorted(letters))
 # For each line, sort that word alphabetically and compare to user unput.
 for line in f:
     word = line
-    print(word)
+    # print(word)
     line = ''.join(sorted(line))
-    print("Sorted line = ", line)
-    print("sorted_letters = ", sorted_letters)
+    # print("Sorted line = ", line)
+    # print("sorted_letters = ", sorted_letters)
     if sorted_letters == line:
         words.append(word)
 
