@@ -1,0 +1,5 @@
+air
+water
+fire
+earth
+spirit

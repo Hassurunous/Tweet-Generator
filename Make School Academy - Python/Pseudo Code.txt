@@ -1,0 +1,27 @@
+1. Dictionary Words - Initial Challenge
+    a. Working with small example file (sample_dict.txt)
+        I.  Open file.
+        II. Read words from file.
+            i. Begin read at 0, end read at '/n'.
+            ii. Store as new string.
+            iii. Begin reading again after '/n'.
+            iv. Repeat.
+        III. Store words in array.
+        IV. Close file.
+        V. List words randomly.
+    b. Working with larger dictionary
+    I.  Open file.
+    II. Split file into lines for easy reading with .splitlines()
+    II. List some number of words randomly.
+
+2. Anagram Finder
+    a. Accepting input from 'user'
+        I. Ask for input from user.
+        II. Store user input.
+        III. Open file.
+        IV. Split file into lines for easy reading with .splitlines()
+        V. Search through dictionary for anagram of the input letters.
+            i. Sort user input alphabetically.
+            ii. Sort next line of dictionary alphabetically.
+            iii. Compare.
+            iv. Repeat. 
