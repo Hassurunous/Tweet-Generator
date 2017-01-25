@@ -22,12 +22,18 @@ import random
 
 # Updated to read from full dictionary. Still reads 5 values.
 
+# Updated to read a number of words specified by the user.
+
 file = open("dictionary")
 words = []
 
 f = file.read().splitlines()
 
-for word in range(5):
-    print(random.choice(f))
+num = int(input("How many words would you like to display?\n"))
+
+for word in range(num):
+    print(random.choice(f), end=" ")
+
+print()
 
 file.close()
