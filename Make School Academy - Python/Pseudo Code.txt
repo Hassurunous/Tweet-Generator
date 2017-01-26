@@ -30,7 +30,16 @@
     a. Accept input from user.
         I. Ask for input from user.
         II. Store user input.
-        III. Open file.
-        IV. Split file into lines for easy reading.
-        V. Search through dictionary for words that begin with user input.
-            i. if first input.length characters of word == input, add to autocomplete array.
+    b. Open file.
+    c. Split file into lines for easy reading.
+    d. Search through dictionary for words that begin with user input.
+        I. if first input.length characters of word == input, add to autocomplete array.
+
+4. Histogram Maker
+    a. Accept file input.
+    b. Open file.
+    c. Split file into words for easy reading.
+        I. REGEX: Split on ' '; Ignore punctuation; Ignore capitalization.
+    d. Store words in histogram
+        I. If 'word' already exists: increment the counter
+           else: append to histogram and add counter, starting at 1.  
