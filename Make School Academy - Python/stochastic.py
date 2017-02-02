@@ -14,7 +14,7 @@ import sys
 # This function returns a random key from the dictionary of words
 # Dictionary is filled based on the input file
 def dictionaryRandom(filename):
-    dictionary = dictionaryFill(filename)
+    dictionary = list(dictionaryFill(filename))
     return dictionary[random.randrange(0, len(dictionary))]
 
 
@@ -27,7 +27,7 @@ def dictionaryRandomWeighted(filename):
     for key, value in dictionary.items():
         for item in range(value):
             weighted_dictionary.append(key)
-    return weighted_dictionary[random.randrange(0, len(weighted_dictionary))]
+    return weighted_dictionary[random.randrange(0, len(weighted_dictionary)-1)]
 
 
 # This function sorts a dictionary based on the values of each key
