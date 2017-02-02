@@ -4,6 +4,9 @@ import operator
 # Import sys for system functions
 import sys
 
+# Import string for string operations
+import string
+
 
 # Function takes in a file and splits it into its words.
 # Then function stores those words in dictionary, keeping a count
@@ -12,9 +15,10 @@ def dictionaryFill(filename):
     # Create empty dictionary to store words from the document.
     dictionary = {}
     with open(filename) as f:
+        translator = str.maketrans('', '', string.punctuation)
         for line in f:
             for word in line.split():
-                word.lower()
+                word = word.translate(translator).lower()
                 if word in dictionary:
                     dictionary[word] += 1
                 else:
