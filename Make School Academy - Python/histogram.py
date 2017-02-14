@@ -47,6 +47,13 @@ def frequency(filename, word):
     return dictionary[word] if word in dictionary else 0
 
 
+# Sort the dictionary by how many of each word were present in the file.
+def dictionary_sort(dictionary):
+    sorted_dictionary = sorted(dictionary.items(), key=operator.itemgetter(1), reverse=True)
+    # Print the sorted dictionary, now a list of tuples.
+    print(sorted_dictionary)
+
+
 # # Run the dictionaryFill function
 # dictionaryFill("spacexarticle")
 
@@ -83,9 +90,3 @@ if __name__ == '__main__':
     else:
         print("Must input a file name as string.")
         sys.exit()
-
-    # # Sort the dictionary by how many of each word were present in the file.
-    # sorted_dictionary = sorted(dictionary.items(), key=operator.itemgetter(1), reverse=True)
-    #
-    # # Print the sorted dictionary, now a list of tuples.
-    # print(sorted_dictionary)

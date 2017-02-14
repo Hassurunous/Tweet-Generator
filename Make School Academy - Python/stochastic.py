@@ -16,7 +16,7 @@ from timeit import Timer
 
 # This function returns a random key from the dictionary of words
 # Dictionary is filled based on the input file
-def dictionaryRandom(filename):
+def dictionary_random(filename):
     dictionary = list(dictionaryFill(filename))
     return dictionary[random.randrange(0, len(dictionary))]
 
@@ -25,42 +25,68 @@ def dictionaryRandom(filename):
 # number of times the word appears in the seeded file.
 # Dictionary is filled based on the input file.
 # Inefficient function creates an array. Refactoring for efficiency.
-def dictionaryRandomArray(dictionary):
+def dictionary_random_array(dictionary):
     weighted_dictionary = []
     for key, value in dictionary.items():
         for item in range(value):
             weighted_dictionary.append(key)
-    return weighted_dictionary[random.randrange(0, len(weighted_dictionary)-1)]
+    return weighted_dictionary[random.randrange(0, len(weighted_dictionary))]
 
 
-def dictionaryRandomWeighted(dictionary):
+# This function converts the dictionary to a list of tuples, then searches
+# through the list, counting all instances of each word in the list, until
+# the count reaches the target random value.
+def dictionary_random_weighted(dictionary):
     # Create an indexed list of tuples from the dictionary
-    word_list = list(dictionary.items())
+    # word_list = list(dictionary.items())
+    # Create a sorted iterator object, instead of list, to preserve memory
+    word_list = dictionary.items()
+    # print("Word List =", word_list)
     # Find the total number of words in the dictionary
     word_range = sum(dictionary.values())
-    target = random.randrange(0, word_range - 1)
+    # Find a random target in the range
+    target = random.randrange(1, word_range + 1)
     # Count and Index used to iterate through list to find word matching
     # the target number, based on the values. Much like a number line.
     count = 0
-    index = 0
     # Iterate through the list of words until you reach the target number
     # and increment your counter based on the value of each key in the
-    # dictionary, now a list of tuples
-    while(count < target):
-        # Add the value of the current word to the ongoing counter
-        count += word_list[index][1]
-        # If the value of count is still below the target, increment index
-        if(count < target):
-            index += 1
-    else:
-        # When the loop finds the word, return the word
-        return(word_list[index][0])
+    # dictionary, now a list of tuples.
+    for word, frequency in word_list:
+        count += frequency
+        # If the count has become larger than the target number, return the
+        # word you are now on, otherwise continue the loop
+        if(count >= target):
+            # print("Final Target, Range, Count, Word = (", target, ",", word_range, ",", count, ",", word, ")")
+            return word
+        # print("Target, Range, Count, Word = (", target, ",", word_range, ",", count, ",", word, ")")
 
 
 # This function sorts a dictionary based on the values of each key
-def dictionarySort(dict):
+def dictionary_sort(dict):
     return sorted(dict.items(), key=operator.
                   itemgetter(1), reverse=True)
+
+
+# Test functions for correct level of randomness
+test_dictionary = dictionaryFill("testpage")
+
+
+def random_function_validation(function_name):
+    words_counter = {}
+    if(function_name == dictionary_random_weighted) or (function_name == dictionary_random_array) or (function_name == dictionary_random):
+        for count in range(10000):
+            word = function_name(test_dictionary)
+            if word in words_counter:
+                words_counter[word] += 1
+            else:
+                words_counter[word] = 1
+    return words_counter
+
+
+# Run test function for each function to test for randomness
+# print("dictionary_random_array return =", random_function_validation(dictionary_random_array))
+# print("dictionary_random_weighted return =", random_function_validation(dictionary_random_weighted))
 
 
 if __name__ == '__main__':
@@ -89,9 +115,9 @@ if __name__ == '__main__':
             if type(f) == str:
                 # Print word returned by dictionaryRandomWeighted()
                 dictionary = dictionaryFill(f)
-                t = Timer("""dictionaryRandomArray(dictionary)""", setup="from __main__ import dictionaryRandomArray, dictionary")
+                t = Timer("""dictionary_random_array(dictionary)""", setup="from __main__ import dictionary_random_array, dictionary")
                 print("Run time from 100 runs =", t.timeit(100))
-                print("Your word is: ", dictionaryRandomArray(dictionary))
+                print("Your word is: ", dictionary_random_array(dictionary))
             else:
                 # Error message or quit command
                 print("'Quit' or invalid input detected. Quitting program...")
@@ -104,9 +130,9 @@ if __name__ == '__main__':
                 # Fill dictionary with words from file given
                 dictionary = dictionaryFill(f)
                 # Print word returned by dictionaryRandomWeighted()
-                t = Timer("""dictionaryRandomWeighted(dictionary)""", setup="from __main__ import dictionaryRandomWeighted, dictionary")
+                t = Timer("""dictionary_random_weighted(dictionary)""", setup="from __main__ import dictionary_random_weighted, dictionary")
                 print("Run time from 100 runs =", t.timeit(100))
-                print("Your word is:", dictionaryRandomWeighted(dictionary))
+                print("Your word is:", dictionary_random_weighted(dictionary))
             else:
                 # Error message or quit command
                 print("'Quit' or invalid input detected. Quitting program...")
