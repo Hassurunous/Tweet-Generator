@@ -35,6 +35,26 @@ def dictionaryFill(filename):
     return dictionary
 
 
+# Function takes in a file and splits it into its words.
+# Then function stores those words in a list
+def listFill(filename):
+    # Create empty list to store words from the document.
+    word_list = []
+    # Use 'with' to also close file when the function is complete
+    with open(filename) as f:
+        # Split the file into its lines
+        for line in f:
+            # Split the line into its words
+            for word in line.split():
+                # Take the word and lowercase it
+                word = word.lower()
+                # Add word to the list
+                word_list.append(word)
+
+    # Return the full word_list
+    return word_list
+
+
 def uniqueWords(histogram):
     uniqueWords = 0
     for key in histogram:

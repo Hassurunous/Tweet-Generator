@@ -36,6 +36,17 @@ class Dictogram(dict):
         """Return the count of the given item in this histogram, or 0"""
         return self[item] if item in self else 0
 
-    def random_word(self):
-        random_key = random.sample(self, 1)
-        return random_key[0]
+    def generate_sentence(self, num_of_words):
+        sentence = []
+        for i in range(num_of_words):
+            if i == 0:
+                sentence.append(self.random_word("[END]"))
+            sentence.append(self.random_word(sentence[i]))
+        return " ".join(sentence)
+
+    def random_word(self, seed=None):
+        if seed:
+            random_word = self[seed].random_word()
+            return random_word[0]
+        else:
+            return random.sample(self, 1)
