@@ -45,28 +45,57 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes"""
-        # TODO: count number of items
-        pass
+        node = self.head
+        count = 0
+        while node is not None:
+            count += 1
+            node = node.next
 
     def append(self, item):
         """Insert the given item at the tail of this linked list"""
-        # TODO: append given item
-        pass
+        item_node = Node(item)
+        if self.tail:
+            self.tail.next = item_node
+            self.tail = item_node
+        else:
+            self.tail = item_node
+            self.head = item_node
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list"""
-        # TODO: prepend given item
-        pass
+        item_node = Node(item)
+        if self.head:
+            item_node.next = self.head
+            self.head = item_node
+        else:
+            self.head = item_node
+            self.tail = item_node
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError"""
-        # TODO: find given item and delete if found
-        pass
+        node = self.head
+        new_first = None
+        while node is not None:
+            print(node.data, item)
+            if node.next.data == item:
+                new_first = node
+            elif node.data == item:
+                if node == self.head:
+                    node.next = self.head
+                else:
+                    new_first.next = node.next
+                    node.next = None
+                break
+            node = node.next
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality"""
-        # TODO: find item where quality(item) is True
-        pass
+        node = self.head
+        while node is not None:
+            print(node.data, quality)
+            if node.data == quality:
+                return node.data
+            node = node.next
 
 
 def test_linked_list():
