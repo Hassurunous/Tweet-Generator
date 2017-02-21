@@ -35,7 +35,6 @@ class LinkedList(object):
         current = self.head
         while current is not None:
             result.append(current.data)
-            # result.append(current)
             current = current.next
         return result
 
@@ -74,28 +73,36 @@ class LinkedList(object):
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError"""
         node = self.head
-        new_first = None
+        last_node = None
+        # print("node is", node)
         while node is not None:
             print(node.data, item)
-            if node.next.data == item:
-                new_first = node
-            elif node.data == item:
-                if node == self.head:
-                    node.next = self.head
-                else:
-                    new_first.next = node.next
+            if node.data == item:
+                if node != self.head and node != self.tail:
+                    last_node.next = node.next
                     node.next = None
+                if node == self.head:
+                    self.head = node.next
+                if node == self.tail:
+                    self.tail = last_node
+                    if last_node:
+                        last_node.next = None
                 break
+            last_node = node
+            if node == self.tail:
+                raise ValueError('Could not find', item, 'in list.')
             node = node.next
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality"""
         node = self.head
         while node is not None:
-            print(node.data, quality)
-            if node.data == quality:
+            # print(node.data, quality)
+            # print("quality(node.data) =", quality(node.data))
+            if quality(node.data):
                 return node.data
             node = node.next
+        return
 
 
 def test_linked_list():

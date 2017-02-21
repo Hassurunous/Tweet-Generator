@@ -81,6 +81,7 @@ class LinkedListTest(unittest.TestCase):
         assert ll.head.data == 'B'
         assert ll.tail.data == 'B'
         ll.delete('B')
+        print(ll.head)
         assert ll.head is None
         assert ll.tail is None
         with self.assertRaises(ValueError):
