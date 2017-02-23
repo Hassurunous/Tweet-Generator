@@ -76,9 +76,11 @@ class HashTableTest(unittest.TestCase):
         ht.set('I', 1)
         assert ht.keys() == ['I']
         ht.set('V', 5)
-        self.assertItemsEqual(ht.keys(), ['I', 'V'])  # Ignore item order
+        self.assertEqual(sorted(ht.keys()), ['I', 'V'])
+        # self.assertItemsEqual(ht.keys(), ['I', 'V'])  # Ignore item order
         ht.set('X', 10)
-        self.assertItemsEqual(ht.keys(), ['I', 'V', 'X'])  # Ignore item order
+        self.assertEqual(sorted(ht.keys()), ['I', 'V', 'X'])
+        # self.assertItemsEqual(ht.keys(), ['I', 'V', 'X'])  # Ignore item order
 
     def test_values(self):
         ht = HashTable()
@@ -86,9 +88,11 @@ class HashTableTest(unittest.TestCase):
         ht.set('I', 1)
         assert ht.values() == [1]
         ht.set('V', 5)
-        self.assertItemsEqual(ht.values(), [1, 5])  # Ignore item order
+        self.assertEqual(sorted(ht.values()), [1, 5])
+        # self.assertItemsEqual(ht.values(), [1, 5])  # Ignore item order
         ht.set('X', 10)
-        self.assertItemsEqual(ht.values(), [1, 5, 10])  # Ignore item order
+        self.assertEqual(sorted(ht.values()), [1, 5, 10])
+        # self.assertItemsEqual(ht.values(), [1, 5, 10])  # Ignore item order
 
     def test_items(self):
         ht = HashTable()
@@ -96,9 +100,11 @@ class HashTableTest(unittest.TestCase):
         ht.set('I', 1)
         assert ht.items() == [('I', 1)]
         ht.set('V', 5)
-        self.assertItemsEqual(ht.items(), [('I', 1), ('V', 5)])
+        self.assertEqual(sorted(ht.items()), [('I', 1), ('V', 5)])
+        # self.assertItemsEqual(ht.items(), [('I', 1), ('V', 5)])
         ht.set('X', 10)
-        self.assertItemsEqual(ht.items(), [('I', 1), ('V', 5), ('X', 10)])
+        self.assertEqual(sorted(ht.items()), [('I', 1), ('V', 5), ('X', 10)])
+        # self.assertItemsEqual(ht.items(), [('I', 1), ('V', 5), ('X', 10)])
 
 
 if __name__ == '__main__':

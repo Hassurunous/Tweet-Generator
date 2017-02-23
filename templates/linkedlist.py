@@ -54,6 +54,7 @@ class LinkedList(object):
         while node is not None:
             count += 1
             node = node.next
+        return count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list"""
@@ -79,24 +80,27 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError"""
         node = self.head
         last_node = None
-        # print("node is", node)
+        print("node is", node)
         while node is not None:
             print(node.data, item)
             if node.data == item:
                 if node != self.head and node != self.tail:
+                    print("Node not head or tail.")
                     last_node.next = node.next
                     node.next = None
                 if node == self.head:
+                    print("Node is head.")
                     self.head = node.next
                 if node == self.tail:
+                    print("Node is tail.")
                     self.tail = last_node
                     if last_node:
                         last_node.next = None
-                break
+                return
             last_node = node
-            if node == self.tail:
-                raise ValueError('Could not find', item, 'in list.')
             node = node.next
+        print("Value not found. Raise ValueError.")
+        raise ValueError('Could not find', item, 'in list.')
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality"""
@@ -126,16 +130,16 @@ def test_linked_list():
     print('length: ' + str(ll.length()))
 
     # Enable this after implementing delete:
-    # print('Deleting items:')
-    # ll.delete('B')
-    # print(ll)
-    # ll.delete('C')
-    # print(ll)
-    # ll.delete('A')
-    # print(ll)
-    # print('head: ' + str(ll.head))
-    # print('tail: ' + str(ll.tail))
-    # print('length: ' + str(ll.length()))
+    print('Deleting items:')
+    ll.delete('B')
+    print(ll)
+    ll.delete('C')
+    print(ll)
+    ll.delete('A')
+    print(ll)
+    print('head: ' + str(ll.head))
+    print('tail: ' + str(ll.tail))
+    print('length: ' + str(ll.length()))
 
 
 if __name__ == '__main__':
