@@ -92,10 +92,10 @@ class LinkedListTest(unittest.TestCase):
         ll.append('A')
         ll.append('B')
         ll.append('C')
-        assert ll.find(lambda item: item == 'B') == 'B'
-        assert ll.find(lambda item: item < 'B') == 'A'
-        assert ll.find(lambda item: item > 'B') == 'C'
-        assert ll.find(lambda item: item == 'D') is None
+        assert ll.find(lambda item: item == 'B').data == 'B'
+        assert ll.find(lambda item: item < 'B').data == 'A'
+        assert ll.find(lambda item: item > 'B').data == 'C'
+        assert ll.find(lambda item: item == 'D').data is None
 
 
 if __name__ == '__main__':

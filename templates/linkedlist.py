@@ -109,9 +109,9 @@ class LinkedList(object):
             # print(node.data, quality)
             # print("quality(node.data) =", quality(node.data))
             if quality(node.data):
-                return node.data
+                return node
             node = node.next
-        return
+        return Node(None)
 
 
 def test_linked_list():

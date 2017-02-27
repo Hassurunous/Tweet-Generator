@@ -56,41 +56,56 @@ class HashTable(object):
                 length += 1
         return length
 
-    def contains(self, key_in):
+    def contains(self, key):
         """Return True if this hash table contains the given key, or False"""
-        for bucket in self.buckets:
-            for key, value in bucket.items():
-                print("Key, Key_In:")
-                print(key, key_in)
-                if key == key_in:
-                    return True
+        # for bucket in self.buckets:
+        #     for key, value in bucket.items():
+        #         print("Key, Key_In:")
+        #         print(key, key_in)
+        #         if key == key_in:
+        #             return True
+        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
+        if node.data:
+                return True
         return False
 
-    def get(self, key_in):
+    def get(self, key):
         """Return the value associated with the given key, or raise KeyError"""
-        for bucket in self.buckets:
-            for key, value in bucket.items():
-                # print("Key, Value", key, value)
-                if key == key_in:
-                    return value
+        # for bucket in self.buckets:
+        #     for key, value in bucket.items():
+        #         # print("Key, Value", key, value)
+        #         if key == key_in:
+        #             return value
+        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
+        if node.data:
+            return node.data[1]
         raise KeyError
 
-    def set(self, key_in, value_in):
+    def set(self, key, value):
         """Insert or update the given key with its associated value"""
-        self.buckets[self._bucket_index(key_in)].append((key_in, value_in))
+        # self.buckets[self._bucket_index(key_in)].append((key_in, value_in))
+        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
+        if node.data:
+            node.data = (key, value)
+        else:
+            self.buckets[self._bucket_index(key)].append((key, value))
 
-    def delete(self, key_in):
+    def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError"""
-        print(self)
-        for bucket in self.buckets:
-            print("Bucket:", bucket)
-            for key, value in bucket.items():
-                # print("Key, Value", key, value)
-                if key == key_in:
-                    print("Found key.")
-                    bucket = []
-                    print(bucket)
-                    return
+        # print(self)
+        # for bucket in self.buckets:
+        #     print("Bucket:", bucket)
+        #     for key, value in bucket.items():
+        #         # print("Key, Value", key, value)
+        #         if key == key_in:
+        #             print("Found key.")
+        #             bucket = []
+        #             print(bucket)
+        #             return
+        # print("Testing delete:", self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key))
+        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
+        if node.data:
+            return self.buckets[self._bucket_index(key)].delete(node.data)
         raise KeyError
 
 
