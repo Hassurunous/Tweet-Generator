@@ -8,12 +8,12 @@ class HashTable(object):
 
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size"""
-        self.buckets = [LinkedList() for i in range(init_size)]
+        self.buckets = [LinkedList() for i in range(init_size)]  # n iterations for each element in init_size
 
     def __str__(self):
         """Return a formatted string representation of this hash table"""
-        items = ['{}: {}'.format(repr(k), repr(v)) for k, v in self.items()]
-        return '{' + ', '.join(items) + '}'
+        items = ['{}: {}'.format(repr(k), repr(v)) for k, v in self.items()]  # n iterations for each item in self.items()
+        return '{' + ', '.join(items) + '}'  # n time to join each item in array
 
     def __repr__(self):
         """Return a string representation of this hash table"""
@@ -26,27 +26,27 @@ class HashTable(object):
     def keys(self):
         """Return a list of all keys in this hash table"""
         # Collect all keys in each of the buckets
-        all_keys = []
-        for bucket in self.buckets:
-            for key, value in bucket.items():
-                all_keys.append(key)
-        return all_keys
+        all_keys = []  # Constant time to assign variable
+        for bucket in self.buckets:  # n iterations always
+            for key, value in bucket.items():  # n iterations always
+                all_keys.append(key)  # Constant time to append
+        return all_keys  # Constant time to return array
 
     def values(self):
         """Return a list of all values in this hash table"""
-        all_values = []
-        for bucket in self.buckets:
-            for key, value in bucket.items():
-                all_values.append(value)
-        return all_values
+        all_values = []  # Constant time to assign variable
+        for bucket in self.buckets:  # n iterations
+            for key, value in bucket.items():  # n iterations
+                all_values.append(value)  # Constant time to append
+        return all_values  # Constant time to return array
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table"""
         # Collect all pairs of key-value entries in each of the buckets
-        all_items = []
-        for bucket in self.buckets:
-            all_items.extend(bucket.items())
-        return all_items
+        all_items = []  # Constant time to assign variable
+        for bucket in self.buckets:  # n iterations
+            all_items.extend(bucket.items())  # Constant time to extend
+        return all_items  # Constant time to return array
 
     def length(self):
         """Return the length of this hash table by traversing its buckets"""
