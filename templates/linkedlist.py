@@ -105,7 +105,7 @@ class LinkedList(object):
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality"""
         node = self.head
-        while node is not None:
+        while node:
             # print(node.data, quality)
             # print("quality(node.data) =", quality(node.data))
             if quality(node.data):

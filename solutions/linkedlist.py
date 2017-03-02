@@ -150,7 +150,7 @@ class LinkedList(object):
         # Start at the head node
         current = self.head  # Constant time to assign a variable reference
         # Loop until the current node is None, which is one node past the tail
-        while current is not None:  # Up to n iterations if we don't exit early
+        while current:  # Up to n iterations if we don't exit early
             # Check if the current node's data satisfyies the quality function
             if quality(current.data):  # Constant time to call quality function
                 # We found data satisfying the quality function, so exit early

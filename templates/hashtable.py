@@ -26,15 +26,17 @@ class HashTable(object):
     def keys(self):
         """Return a list of all keys in this hash table"""
         # Collect all keys in each of the buckets
+        # O(n)
         all_keys = []  # Constant time to assign variable
-        for bucket in self.buckets:  # n iterations always
-            for key, value in bucket.items():  # n iterations always
+        for bucket in self.buckets:  # O(b) iterations always
+            for key, value in bucket.items():  # O(l) = n/b iterations always
                 all_keys.append(key)  # Constant time to append
         return all_keys  # Constant time to return array
 
     def values(self):
         """Return a list of all values in this hash table"""
         all_values = []  # Constant time to assign variable
+        # nlogn or nk
         for bucket in self.buckets:  # n iterations
             for key, value in bucket.items():  # n iterations
                 all_values.append(value)  # Constant time to append
@@ -64,7 +66,7 @@ class HashTable(object):
         #         print(key, key_in)
         #         if key == key_in:
         #             return True
-        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
+        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)  # Runs the
         if node.data:
                 return True
         return False
@@ -76,14 +78,13 @@ class HashTable(object):
         #         # print("Key, Value", key, value)
         #         if key == key_in:
         #             return value
-        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
+        node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)  # n
         if node.data:
             return node.data[1]
         raise KeyError
 
     def set(self, key, value):
         """Insert or update the given key with its associated value"""
-        # self.buckets[self._bucket_index(key_in)].append((key_in, value_in))
         node = self.buckets[self._bucket_index(key)].find(lambda item: item[0] == key)
         if node.data:
             node.data = (key, value)
